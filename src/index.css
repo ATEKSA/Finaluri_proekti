@@ -1821,3 +1821,843 @@ button:active {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================
+   ENHANCED ATOM VISUALS ON SVG CANVAS
+   ========================================== */
+
+/* Slow spinning rotation for orbit rings */
+@keyframes orbit-ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.orbit-circle {
+  animation: orbit-ring-spin 12s linear infinite;
+  transform-origin: center center;
+  filter: drop-shadow(0 0 2px rgba(0, 242, 254, 0.25));
+}
+
+/* Stagger the second and third orbit rings for visual depth */
+.orbit-circle:nth-child(2) {
+  animation-duration: 18s;
+  animation-direction: reverse;
+}
+
+.orbit-circle:nth-child(3) {
+  animation-duration: 25s;
+}
+
+/* Enhanced pulsing glow for electrons */
+@keyframes electron-pulse-glow {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px rgba(0, 242, 254, 0.3));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.7))
+           drop-shadow(0 0 20px rgba(0, 242, 254, 0.35));
+  }
+}
+
+svg .animate-pulse-glow {
+  animation: electron-pulse-glow 2.4s ease-in-out infinite;
+}
+
+/* Scale-up effect on atom hover */
+.atom-hover {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.25s ease;
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 14px rgba(0, 242, 254, 0.45))
+         drop-shadow(0 0 28px rgba(0, 242, 254, 0.15));
+}
+
+/* Bond line glow animation */
+@keyframes bond-glow-pulse {
+  0%, 100% {
+    stroke-opacity: 0.65;
+    filter: drop-shadow(0 0 2px rgba(0, 242, 254, 0.2));
+  }
+  50% {
+    stroke-opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.55))
+           drop-shadow(0 0 12px rgba(168, 85, 247, 0.25));
+  }
+}
+
+.bond-glow {
+  animation: bond-glow-pulse 3s ease-in-out infinite;
+}
+
+
+/* ==========================================
+   PUZZLE TUTORIAL BOX
+   ========================================== */
+
+@keyframes tutorial-border-travel {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.puzzle-tutorial-box {
+  position: relative;
+  font-size: 0.78rem;
+  color: var(--color-text-primary);
+  padding: 1.15rem 1.25rem !important;
+  border-radius: 12px !important;
+  text-align: left;
+  margin: 0.5rem 0;
+  line-height: 1.65 !important;
+  background:
+    linear-gradient(135deg,
+      rgba(0, 242, 254, 0.08) 0%,
+      rgba(168, 85, 247, 0.06) 50%,
+      rgba(59, 130, 246, 0.08) 100%) !important;
+  border: 1px solid transparent !important;
+  background-clip: padding-box !important;
+  overflow: hidden;
+}
+
+/* Animated gradient border via pseudo-element */
+.puzzle-tutorial-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(
+    270deg,
+    rgba(0, 242, 254, 0.5),
+    rgba(168, 85, 247, 0.4),
+    rgba(59, 130, 246, 0.5),
+    rgba(0, 242, 254, 0.5)
+  );
+  background-size: 300% 300%;
+  animation: tutorial-border-travel 6s ease infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Icon bullet point effect for list items */
+.puzzle-tutorial-box ul,
+.puzzle-tutorial-box ol {
+  list-style: none;
+  padding-left: 0.25rem;
+  margin: 0.35rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.puzzle-tutorial-box li {
+  position: relative;
+  padding-left: 1.65rem;
+}
+
+/* Neon dot bullet */
+.puzzle-tutorial-box ul li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.7rem;
+  color: var(--color-cyan);
+  filter: drop-shadow(0 0 4px rgba(0, 242, 254, 0.6));
+}
+
+/* Step numbering for ordered lists */
+.puzzle-tutorial-box ol {
+  counter-reset: tutorial-step;
+}
+
+.puzzle-tutorial-box ol li::before {
+  counter-increment: tutorial-step;
+  content: counter(tutorial-step);
+  position: absolute;
+  left: 0;
+  top: -0.05rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-blue));
+  color: #0f111a;
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.35);
+}
+
+.puzzle-tutorial-box strong {
+  color: var(--color-cyan);
+  font-weight: 700;
+}
+
+
+/* ==========================================
+   VERIFICATION RESULT ANIMATIONS & VARIANTS
+   ========================================== */
+
+/* Confetti / celebration burst for success */
+@keyframes confetti-burst {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(1.2) rotate(45deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1) rotate(90deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes confetti-pop {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 0;
+  }
+  15% {
+    transform: translateY(-8px) scale(1.15);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-20px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(40px) scale(0.6) rotate(120deg);
+    opacity: 0;
+  }
+}
+
+/* Shake animation for errors */
+@keyframes shake-error {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-6px) rotate(-0.5deg); }
+  20% { transform: translateX(6px) rotate(0.5deg); }
+  30% { transform: translateX(-5px) rotate(-0.3deg); }
+  40% { transform: translateX(5px) rotate(0.3deg); }
+  50% { transform: translateX(-3px); }
+  60% { transform: translateX(3px); }
+  70% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  90% { transform: translateX(-1px); }
+}
+
+/* Glow entrance for success panels */
+@keyframes success-glow-in {
+  0% {
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+    border-color: rgba(16, 185, 129, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.25),
+                0 0 60px rgba(16, 185, 129, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.15),
+                0 0 40px rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.5);
+  }
+}
+
+/* Success variant */
+.verification-result-panel.success {
+  border-left-color: var(--color-green);
+  background: linear-gradient(135deg,
+    rgba(16, 185, 129, 0.08) 0%,
+    rgba(57, 255, 20, 0.04) 50%,
+    rgba(16, 185, 129, 0.06) 100%);
+  animation: success-glow-in 0.8s ease-out forwards;
+}
+
+.verification-result-panel.success .result-status-icon {
+  background: rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+}
+
+.verification-result-panel.success .result-title-block h3 {
+  color: var(--color-green);
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Confetti particles inside success panel */
+.verification-result-panel.success::after {
+  content: '🎉';
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 1.5rem;
+  animation: confetti-burst 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+/* Error variant */
+.verification-result-panel.error {
+  border-left-color: var(--color-red);
+  background: linear-gradient(135deg,
+    rgba(239, 68, 68, 0.08) 0%,
+    rgba(185, 28, 28, 0.04) 50%,
+    rgba(239, 68, 68, 0.06) 100%);
+  animation: shake-error 0.6s ease-out;
+}
+
+.verification-result-panel.error .result-status-icon {
+  background: rgba(239, 68, 68, 0.15);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+}
+
+.verification-result-panel.error .result-title-block h3 {
+  color: var(--color-red);
+}
+
+
+/* ==========================================
+   SANDBOX CANVAS IMPROVEMENTS
+   ========================================== */
+
+@keyframes canvas-gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.sandbox-svg {
+  background-color: #0a0c14;
+  background-image:
+    /* Subtle animated gradient underlayer */
+    radial-gradient(ellipse at 20% 50%, rgba(0, 242, 254, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    /* Grid dot pattern — more visible */
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size:
+    200% 200%,
+    200% 200%,
+    200% 200%,
+    24px 24px;
+  animation: canvas-gradient-shift 20s ease infinite;
+}
+
+/* Canvas empty state — shown when no atoms are placed */
+.canvas-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.canvas-empty-state .empty-icon {
+  opacity: 0.18;
+  animation: float 5s ease-in-out infinite;
+}
+
+.canvas-empty-state .empty-label {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+  opacity: 0.5;
+}
+
+.canvas-empty-state .empty-hint {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  opacity: 0.35;
+  max-width: 220px;
+  line-height: 1.45;
+}
+
+
+/* ==========================================
+   PUZZLE CARD ENHANCEMENTS
+   ========================================== */
+
+/* Shimmer animation on hover for unlocked cards */
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+.puzzle-card.unlocked::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 242, 254, 0.06) 30%,
+    rgba(0, 242, 254, 0.12) 50%,
+    rgba(0, 242, 254, 0.06) 70%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  pointer-events: none;
+  z-index: 2;
+  transition: none;
+}
+
+.puzzle-card.unlocked:hover::after {
+  animation: shimmer-sweep 1s ease-out forwards;
+}
+
+/* Completed cards get a green shimmer */
+.puzzle-card.completed::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(16, 185, 129, 0.06) 30%,
+    rgba(16, 185, 129, 0.12) 50%,
+    rgba(16, 185, 129, 0.06) 70%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  pointer-events: none;
+  z-index: 2;
+  transition: none;
+}
+
+.puzzle-card.completed:hover::after {
+  animation: shimmer-sweep 1s ease-out forwards;
+}
+
+/* Better locked card styling with blur overlay */
+.puzzle-card.locked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(255, 255, 255, 0.01) 8px,
+      rgba(255, 255, 255, 0.01) 16px
+    );
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Lock icon visual cue */
+.puzzle-card.locked .molecule-formula-display {
+  filter: blur(3px) grayscale(0.8);
+  opacity: 0.4;
+}
+
+.puzzle-card.locked .molecule-name {
+  filter: blur(2px);
+  opacity: 0.4;
+}
+
+.puzzle-card.locked .puzzle-desc {
+  filter: blur(2px);
+  opacity: 0.3;
+}
+
+/* ==========================================
+   PUZZLE MISSION SIDEBAR & PROGRESS BADGES
+   ========================================== */
+
+.level-progress-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  margin-bottom: 0.85rem;
+  backdrop-filter: blur(4px);
+}
+
+.level-badge-text {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.bond-type-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.bond-type-tag.covalent {
+  background: rgba(0, 242, 254, 0.12);
+  color: var(--color-cyan);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.15);
+}
+
+.bond-type-tag.ionic {
+  background: rgba(168, 85, 247, 0.12);
+  color: var(--color-purple);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.15);
+}
+
+/* ==========================================
+   TARGET MOLECULE DISPLAY CARD
+   ========================================== */
+
+.target-molecule-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.4rem 1rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(30, 41, 59, 0.3) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.target-formula-glow {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(0, 242, 254, 0.4), 0 0 30px rgba(168, 85, 247, 0.25);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.target-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================
+   BONDS PROGRESS BAR
+   ========================================== */
+
+.bonds-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.bonds-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.bonds-count {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--color-cyan);
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.25);
+}
+
+.bonds-progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.01);
+}
+
+.bonds-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-purple));
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================
+   VISUAL TUTORIAL PANEL & STEPS
+   ========================================== */
+
+.visual-tutorial-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.1rem;
+  background: rgba(15, 23, 42, 0.25);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  margin-bottom: 0.9rem;
+}
+
+.tutorial-panel-title {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.bond-diagram-svg-wrapper {
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 0.35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.tutorial-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tutorial-step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid transparent;
+  opacity: 0.45;
+  transition: all 0.25s ease;
+}
+
+.tutorial-step-row.active {
+  opacity: 1;
+  background: rgba(0, 242, 254, 0.04);
+  border-color: rgba(0, 242, 254, 0.25);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.06);
+}
+
+.tutorial-step-row.done {
+  opacity: 0.8;
+  background: rgba(16, 185, 129, 0.02);
+  border-color: rgba(16, 185, 129, 0.12);
+}
+
+.tutorial-step-num {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-secondary);
+  font-size: 0.68rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.tutorial-step-row.active .tutorial-step-num {
+  background: var(--color-cyan);
+  color: #080c14;
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+}
+
+.tutorial-step-row.done .tutorial-step-num {
+  background: var(--color-green);
+  color: #080c14;
+}
+
+.tutorial-step-icon {
+  flex-shrink: 0;
+  font-size: 0.95rem;
+  line-height: 18px;
+}
+
+.tutorial-step-text {
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+  transition: color 0.25s ease;
+}
+
+.tutorial-step-row.active .tutorial-step-text {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.tutorial-step-row.done .tutorial-step-text {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* ==========================================
+   FUN FACT BOX
+   ========================================== */
+
+.fun-fact-box {
+  padding: 0.8rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.03);
+  border: 1px dashed rgba(245, 158, 11, 0.18);
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+.fun-fact-box::before {
+  content: "💡 ფაქტი: ";
+  font-weight: 700;
+  color: var(--color-amber);
+}
+
+/* ==========================================
+   CELEBRATION OVERLAY & CONFETTI
+   ========================================== */
+
+.celebration-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 8, 14, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 99;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.celebration-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 440px;
+  padding: 2.2rem;
+  z-index: 10;
+  gap: 1.1rem;
+}
+
+.celebration-formula {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #00f2fe 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 16px rgba(0, 242, 254, 0.35));
+  margin-bottom: 0.2rem;
+  animation: float 4s ease-in-out infinite;
+}
+
+.celebration-title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+.celebration-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.celebration-xp {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-green);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.4rem 1.2rem;
+  border-radius: 30px;
+  letter-spacing: 0.03em;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+  animation: pulse-glow 2s infinite;
+}
+
+.celebration-actions {
+  display: flex;
+  gap: 0.85rem;
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.6rem;
+}
+
+.celebration-actions button {
+  min-width: 110px;
+}
+
+.confetti-particle {
+  position: absolute;
+  top: -20px;
+  width: 9px;
+  height: 16px;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  animation: confetti-pop 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
+  }
+}
