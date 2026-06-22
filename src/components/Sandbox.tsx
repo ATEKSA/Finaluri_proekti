@@ -27,16 +27,42 @@ export interface PuzzleLevelConfig {
   nameGeo: string;
   formula: string;
   description: string;
+  tutorial: string;
   atomsToSpawn: string[];
   xpReward: number;
 }
 
 export const PUZZLE_LEVELS: Record<number, PuzzleLevelConfig> = {
-  1: { id: 1, nameGeo: 'წყალი', formula: 'H₂O', description: 'დააკავშირეთ 2 წყალბადის (H) და 1 ჟანგბადის (O) ატომი წყლის (H₂O) მოლეკულის მისაღებად.', atomsToSpawn: ['H', 'H', 'O'], xpReward: 50 },
-  2: { id: 2, nameGeo: 'სუფრის მარილი', formula: 'NaCl', description: 'ნატრიუმის (Na) და ქლორის (Cl) ატომებისგან შექმენით იონური მარილი (NaCl).', atomsToSpawn: ['Na', 'Cl'], xpReward: 75 },
-  3: { id: 3, nameGeo: 'ნახშირორჟანგი', formula: 'CO₂', description: 'შეაერთეთ ნახშირბადის (C) ატომი ჟანგბადის (O) ორ ატომთან ორმაგი კოვალენტური ბმებით.', atomsToSpawn: ['C', 'O', 'O'], xpReward: 100 },
-  4: { id: 4, nameGeo: 'მეთანი', formula: 'CH₄', description: 'დააკავშირეთ ნახშირბადის (C) ატომი 4 წყალბადთან (H) მარტივი კოვალენტური კავშირებით.', atomsToSpawn: ['C', 'H', 'H', 'H', 'H'], xpReward: 120 },
-  5: { id: 5, nameGeo: 'მარილმჟავა', formula: 'HCl', description: 'შეაერთეთ 1 წყალბადის (H) და 1 ქლორის (Cl) ატომი მჟავას მოლეკულის შესაქმნელად.', atomsToSpawn: ['H', 'Cl'], xpReward: 150 }
+  1: {
+    id: 1, nameGeo: 'წყალი', formula: 'H₂O',
+    description: 'დააკავშირეთ 2 წყალბადის (H) და 1 ჟანგბადის (O) ატომი წყლის (H₂O) მოლეკულის მისაღებად.',
+    tutorial: '📘 როგორ ვითამაშოთ: წყალბადს (H) აქვს 1 სავალენტო ელექტრონი და სჭირდება 1 ბმა. ჟანგბადს (O) აქვს 6 სავალენტო ელექტრონი და სჭირდება 2 ბმა. გადმოათრიეთ H-ის ელექტრონი O-ის თავისუფალ ელექტრონზე — გააკეთეთ ეს ორჯერ, ორივე H-სთვის. შემდეგ დააჭირეთ „შემოწმებას".',
+    atomsToSpawn: ['H', 'H', 'O'], xpReward: 50
+  },
+  2: {
+    id: 2, nameGeo: 'სუფრის მარილი', formula: 'NaCl',
+    description: 'ნატრიუმის (Na) და ქლორის (Cl) ატომებისგან შექმენით იონური მარილი (NaCl).',
+    tutorial: '📘 როგორ ვითამაშოთ: ნატრიუმს (Na) აქვს 1 სავალენტო ელექტრონი, რომლის გაცემაც სურს. ქლორს (Cl) აქვს 7 ელექტრონი და 1 აკლია. გადმოათრიეთ Na-ს ელექტრონი Cl-ის თავისუფალ ადგილზე — ეს შექმნის იონურ ბმას. შემდეგ დააჭირეთ „შემოწმებას".',
+    atomsToSpawn: ['Na', 'Cl'], xpReward: 75
+  },
+  3: {
+    id: 3, nameGeo: 'ნახშირორჟანგი', formula: 'CO₂',
+    description: 'შეაერთეთ ნახშირბადის (C) ატომი ჟანგბადის (O) ორ ატომთან ორმაგი კოვალენტური ბმებით.',
+    tutorial: '📘 როგორ ვითამაშოთ: ნახშირბადს (C) აქვს 4 სავალენტო ელექტრონი და სჭირდება 4 ბმა. თითოეულ ჟანგბადს (O) სჭირდება 2 ბმა. შეაერთეთ C-ის 2 ელექტრონი პირველ O-სთან და C-ის მეორე 2 ელექტრონი მეორე O-სთან — ეს ქმნის ორმაგ ბმებს. შემდეგ დააჭირეთ „შემოწმებას".',
+    atomsToSpawn: ['C', 'O', 'O'], xpReward: 100
+  },
+  4: {
+    id: 4, nameGeo: 'მეთანი', formula: 'CH₄',
+    description: 'დააკავშირეთ ნახშირბადის (C) ატომი 4 წყალბადთან (H) მარტივი კოვალენტური კავშირებით.',
+    tutorial: '📘 როგორ ვითამაშოთ: ნახშირბადს (C) აქვს 4 ელექტრონი და სჭირდება 4 ბმა. თითოეულ წყალბადს (H) სჭირდება 1 ბმა. შეაერთეთ C-ის თითოეული ელექტრონი სხვადასხვა H-ის ელექტრონთან — სულ 4 ბმა. შემდეგ დააჭირეთ „შემოწმებას".',
+    atomsToSpawn: ['C', 'H', 'H', 'H', 'H'], xpReward: 120
+  },
+  5: {
+    id: 5, nameGeo: 'მარილმჟავა', formula: 'HCl',
+    description: 'შეაერთეთ 1 წყალბადის (H) და 1 ქლორის (Cl) ატომი მჟავას მოლეკულის შესაქმნელად.',
+    tutorial: '📘 როგორ ვითამაშოთ: წყალბადს (H) აქვს 1 ელექტრონი და სჭირდება 1 ბმა. ქლორს (Cl) აქვს 7 ელექტრონი და 1 ბმა სჭირდება. გადმოათრიეთ H-ს ელექტრონი Cl-ს თავისუფალ ელექტრონზე. შემდეგ დააჭირეთ „შემოწმებას".',
+    atomsToSpawn: ['H', 'Cl'], xpReward: 150
+  }
 };
 
 interface AtomInstance {
@@ -449,6 +475,9 @@ export const Sandbox: React.FC<SandboxProps> = ({
                 <strong style={{ fontSize: '1.85rem', color: 'var(--color-cyan)', fontFamily: 'var(--font-display)', filter: 'drop-shadow(0 0 8px rgba(0,242,254,0.4))' }}>
                   {PUZZLE_LEVELS[levelId]?.formula}
                 </strong>
+              </div>
+              <div className="puzzle-tutorial-box" style={{ fontSize: '0.78rem', color: 'var(--color-text-primary)', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.2)', padding: '0.75rem', borderRadius: '10px', textAlign: 'left', margin: '0.5rem 0', lineHeight: '1.55' }}>
+                {PUZZLE_LEVELS[levelId]?.tutorial}
               </div>
               <div className="mission-tips" style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', background: 'rgba(168, 85, 247, 0.05)', border: '1px dashed rgba(168, 85, 247, 0.25)', padding: '0.75rem', borderRadius: '8px', textAlign: 'left', marginTop: 'auto' }}>
                 <strong>რჩევა:</strong> დააკავშირეთ ატომების გარე მწვანე ელექტრონები. ყველა ატომი უნდა იყოს კმაყოფილი და სრულად დაკავშირებული!

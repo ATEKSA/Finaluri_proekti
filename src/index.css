@@ -1519,4 +1519,305 @@ button:active {
   color: var(--color-text-primary);
 }
 
+/* ==========================================
+   LEADERBOARD STYLES
+   ========================================== */
+.leaderboard-container {
+  padding: 0 0.5rem;
+}
 
+.leaderboard-podium {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.podium-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  border-radius: 16px;
+  gap: 0.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.podium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.podium-card.rank-1 {
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.08);
+  order: 2;
+}
+
+.podium-card.rank-2 {
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(148, 163, 184, 0.06);
+  order: 1;
+}
+
+.podium-card.rank-3 {
+  border: 1px solid rgba(205, 127, 50, 0.3);
+  background: rgba(205, 127, 50, 0.06);
+  order: 3;
+}
+
+.podium-card.is-you {
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+  border-color: rgba(0, 242, 254, 0.4) !important;
+}
+
+.podium-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.podium-xp {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--color-cyan);
+  filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.3));
+}
+
+.podium-levels {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.leaderboard-table {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.table-header-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 100px 80px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 100px 80px;
+  padding: 0.75rem 1.25rem;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.table-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.table-row.is-you {
+  background: rgba(0, 242, 254, 0.05);
+  border-left: 3px solid var(--color-cyan);
+}
+
+.table-row.top-three .col-rank {
+  display: flex;
+  align-items: center;
+}
+
+.col-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.col-xp {
+  color: var(--color-cyan);
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+.col-levels {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+}
+
+.col-rank {
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.you-badge {
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-purple));
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================
+   SOURCES STYLES
+   ========================================== */
+.sources-container {
+  padding: 0 0.5rem;
+}
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+
+.source-card {
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.source-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.source-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.source-category-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.source-link-icon {
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.source-link-icon:hover {
+  opacity: 1;
+}
+
+.source-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.source-title-eng {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.source-description {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.source-trust {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  margin-top: auto;
+}
+
+.source-trust svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.trust-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-green);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.trust-text {
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.source-visit-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-cyan);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  background: rgba(0, 242, 254, 0.05);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.source-visit-btn:hover {
+  background: rgba(0, 242, 254, 0.12);
+  border-color: rgba(0, 242, 254, 0.4);
+  color: var(--color-cyan);
+}
+
+/* Responsive - Leaderboard & Sources */
+@media (max-width: 768px) {
+  .leaderboard-podium {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .podium-card.rank-1,
+  .podium-card.rank-2,
+  .podium-card.rank-3 {
+    order: unset;
+  }
+
+  .table-header-row,
+  .table-row {
+    grid-template-columns: 40px 1fr 70px 60px;
+    font-size: 0.75rem;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .sources-grid {
+    grid-template-columns: 1fr;
+  }
+}
