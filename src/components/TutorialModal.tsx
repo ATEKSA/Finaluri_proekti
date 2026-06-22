@@ -44,9 +44,15 @@ export const TutorialModal: React.FC<TutorialModalProps> = ({ isOpen, onClose })
             ყველაფერი ჩვენს გარშემო პატარა ნაწილაკებისგან — <strong>ატომებისგან</strong> შედგება.
           </p>
 
-          {/* Local screen recording video */}
           <div className="video-container" style={{ margin: '0.75rem 0', width: '100%', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-light)', boxShadow: '0 4px 20px rgba(0,0,0,0.4)' }}>
-            <video src="/0622.mp4" controls width="100%" style={{ display: 'block', maxHeight: '140px', objectFit: 'cover' }} />
+            <video 
+              src="./0622.mp4" 
+              controls 
+              playsInline
+              preload="metadata"
+              width="100%" 
+              style={{ display: 'block', maxHeight: '140px', objectFit: 'cover' }} 
+            />
           </div>
 
           {/* Funny agreement poll */}
