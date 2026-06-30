@@ -563,6 +563,50 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+    
+    /* Print Layout for PDF Export */
+    @media print {
+      body, html {
+        background: #060913 !important;
+        overflow: visible !important;
+        height: auto !important;
+      }
+      #viewport {
+        background: none !important;
+        display: block !important;
+        height: auto !important;
+      }
+      #stage {
+        position: relative !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        width: 1920px !important;
+        height: auto !important;
+      }
+      .slide {
+        position: relative !important;
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        width: 1920px !important;
+        height: 1080px !important;
+        padding: 90px 140px 100px 140px !important;
+      }
+      /* Ensure staggered content is instantly visible on print */
+      .slide-body > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      /* Hide UI Chrome */
+      .controls-hud, .dots-nav, .editor-status-banner {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
