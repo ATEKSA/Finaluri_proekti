@@ -418,7 +418,7 @@ export const Sandbox: React.FC<SandboxProps> = ({
       <div className="sandbox-grid-container">
 
         {/* ── Left Sidebar ── */}
-        <div className="sandbox-sidebar glass-panel">
+        <div className="sandbox-sidebar glass-panel glass-panel-upgrade">
           {puzzleMode && level ? (
             <div className="puzzle-mission-sidebar">
               {/* Back button */}
@@ -547,7 +547,7 @@ export const Sandbox: React.FC<SandboxProps> = ({
         </div>
 
         {/* ── Canvas ── */}
-        <div className="sandbox-canvas-wrapper glass-panel">
+        <div className="sandbox-canvas-wrapper glass-panel glass-panel-upgrade">
           <div className="canvas-header">
             <span className="canvas-title">
               {puzzleMode ? `🧪 ${level?.nameGeo} — ${level?.formula}` : '🔬 ლაბორატორიის დაფა'}
@@ -564,7 +564,7 @@ export const Sandbox: React.FC<SandboxProps> = ({
 
           <svg
             ref={canvasRef}
-            className="sandbox-svg"
+            className="sandbox-svg cyber-grid-bg"
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
           >

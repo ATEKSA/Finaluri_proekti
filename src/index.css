@@ -2661,3 +2661,36 @@ svg .animate-pulse-glow {
     box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
   }
 }
+
+/* Cyber Grid & Glassmorphism Upgrades */
+@keyframes cyber-grid-scroll {
+  from { background-position: 0 0; }
+  to { background-position: 48px 48px; }
+}
+
+.cyber-grid-bg {
+  background-image: 
+    linear-gradient(rgba(0, 242, 254, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 254, 0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: cyber-grid-scroll 18s linear infinite;
+}
+
+.glass-panel-upgrade {
+  background: rgba(10, 15, 30, 0.65) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+  border: 1px solid rgba(0, 242, 254, 0.12) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.sandbox-svg.cyber-grid-bg {
+  background-color: #070912;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(0, 242, 254, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
+    linear-gradient(rgba(0, 242, 254, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 254, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  animation: cyber-grid-scroll 24s linear infinite;
+}
