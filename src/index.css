@@ -1314,20 +1314,20 @@ button:active {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--border-light);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  background: rgba(20, 24, 35, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(10, 15, 30, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
 
 /* Glassmorphism gradient effect on hover for unlocked cards */
 .puzzle-card.unlocked:hover {
-  transform: translateY(-5px);
-  background: rgba(28, 33, 48, 0.75);
-  border-color: rgba(0, 242, 254, 0.45);
-  box-shadow: 0 12px 30px rgba(0, 242, 254, 0.12);
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(0, 242, 254, 0.25) !important;
+  box-shadow: 0 15px 45px rgba(0, 242, 254, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 .puzzle-card.completed {
@@ -1541,13 +1541,19 @@ button:active {
   border-radius: 16px;
   gap: 0.5rem;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
+  background: rgba(10, 15, 30, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(0, 242, 254, 0.08) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
 
 .podium-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(0, 242, 254, 0.25) !important;
+  box-shadow: 0 15px 40px rgba(0, 242, 254, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 .podium-card.rank-1 {
