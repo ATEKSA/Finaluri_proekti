@@ -404,11 +404,12 @@ export const Sandbox: React.FC<SandboxProps> = ({
 
   const level = puzzleMode ? PUZZLE_LEVELS[levelId] : null;
 
-  /* ─── SVG gradient defs per atom ─── */
   const gradientDefs = Object.entries(ATOM_DEFS).map(([sym, def]) => (
-    <radialGradient key={sym} id={`atomGrad_${sym}`} cx="35%" cy="35%" r="65%">
-      <stop offset="0%"   stopColor={def.color} stopOpacity="0.6" />
-      <stop offset="100%" stopColor={def.color} stopOpacity="0.05" />
+    <radialGradient key={sym} id={`atomGrad_${sym}`} cx="30%" cy="30%" r="70%" fx="30%" fy="30%">
+      <stop offset="0%"   stopColor="#ffffff" stopOpacity="0.9" />
+      <stop offset="20%"  stopColor={def.color} stopOpacity="0.85" />
+      <stop offset="70%"  stopColor={def.color} stopOpacity="0.4" />
+      <stop offset="100%" stopColor="#010204" stopOpacity="0.95" />
     </radialGradient>
   ));
 
@@ -581,6 +582,9 @@ export const Sandbox: React.FC<SandboxProps> = ({
                 <feGaussianBlur stdDeviation="9" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
+              <filter id="atom3dShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="4" dy="10" stdDeviation="6" floodColor="#000000" floodOpacity="0.55" />
+              </filter>
             </defs>
 
             {/* Grid */}
@@ -672,7 +676,7 @@ export const Sandbox: React.FC<SandboxProps> = ({
                   )}
 
                   {/* Atom body with radial gradient */}
-                  <circle r={def.radius - 6} fill={`url(#atomGrad_${atom.symbol})`} />
+                  <circle r={def.radius - 6} fill={`url(#atomGrad_${atom.symbol})`} filter="url(#atom3dShadow)" />
 
                   {/* Nucleus core */}
                   <circle r={def.radius - 12}
