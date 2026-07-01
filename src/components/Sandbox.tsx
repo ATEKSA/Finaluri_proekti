@@ -628,6 +628,45 @@ export const Sandbox: React.FC<SandboxProps> = ({
                     strokeDashoffset={bond.isNew ? bondLen : 0}
                     style={bond.isNew ? { transition: 'stroke-dashoffset 0.5s ease' } : {}}
                   />
+                  {/* traveling electron pulse dot(s) */}
+                  {isIonic ? (
+                    (() => {
+                      const isA_Na = atomA.symbol === 'Na';
+                      const fX = isA_Na ? start.x : end.x;
+                      const fY = isA_Na ? start.y : end.y;
+                      const tX = isA_Na ? end.x : start.x;
+                      const tY = isA_Na ? end.y : start.y;
+                      return (
+                        <circle r="3.5" fill="#a855f7" filter="url(#glow)">
+                          <animateMotion
+                            dur="2s"
+                            repeatCount="indefinite"
+                            path={`M ${fX} ${fY} L ${tX} ${tY}`}
+                          />
+                        </circle>
+                      );
+                    })()
+                  ) : (
+                    <>
+                      {/* Pulse A -> B */}
+                      <circle r="3.5" fill="#39ff14" filter="url(#glow)">
+                        <animateMotion
+                          dur="2.5s"
+                          repeatCount="indefinite"
+                          path={`M ${start.x} ${start.y} L ${end.x} ${end.y}`}
+                        />
+                      </circle>
+                      {/* Pulse B -> A */}
+                      <circle r="3.5" fill="#39ff14" filter="url(#glow)">
+                        <animateMotion
+                          dur="2.5s"
+                          begin="1.25s"
+                          repeatCount="indefinite"
+                          path={`M ${end.x} ${end.y} L ${start.x} ${start.y}`}
+                        />
+                      </circle>
+                    </>
+                  )}
                   {/* center dot */}
                   <circle cx={(start.x + end.x) / 2} cy={(start.y + end.y) / 2}
                     r="3" fill={bondColor} opacity="0.7" />
